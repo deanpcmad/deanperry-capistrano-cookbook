@@ -45,7 +45,7 @@ module Capistrano
       def config_files_defaults
         %w(
           nginx.conf
-          database.example.yml
+          database.yml
           log_rotation
           monit
           unicorn.rb

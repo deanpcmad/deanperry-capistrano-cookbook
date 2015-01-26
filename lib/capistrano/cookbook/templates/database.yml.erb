@@ -1,11 +1,9 @@
 <%= fetch(:rails_env) %>:
-  adapter: postgresql
-  timeout: 5000
+  adapter: mysql2
   encoding: utf8
   reconnect: false
   database: <%= "#{fetch(:application)}_#{fetch(:rails_env)}" %>
   pool: 5
   username: <%= "#{fetch(:application)}_#{fetch(:rails_env)}" %>
   password: <%= SecureRandom.hex(12) %>
-  host: 127.0.0.1
-  port: 5432
+  host: localhost
