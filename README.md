@@ -33,6 +33,7 @@ require 'capistrano/cookbook/check_revision'
 require 'capistrano/cookbook/compile_assets_locally'
 require 'capistrano/cookbook/create_database'
 require 'capistrano/cookbook/logs'
+require 'capistrano/cookbook/rails'
 require 'capistrano/cookbook/monit'
 require 'capistrano/cookbook/nginx'
 require 'capistrano/cookbook/restart'
@@ -50,6 +51,14 @@ Add the following to `deploy.rb`
 
 ```ruby
 before :deploy, 'deploy:check_revision'
+```
+
+#### Rails Console
+
+Connects to the server and opens `bin/rails console`.
+
+```bash
+cap STAGE rails:c
 ```
 
 #### Compile Assets Locally
