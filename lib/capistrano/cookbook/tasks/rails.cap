@@ -1,3 +1,4 @@
+# from http://www.talkingquickly.co.uk/2014/03/starting-a-rails-console-with-capistrano-3/
 namespace :rails do
   desc "Start a rails console, for now just with the primary server"
   task :c do
