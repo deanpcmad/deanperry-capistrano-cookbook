@@ -2,19 +2,13 @@
 
 A collection of Capistrano 3 Compatible tasks to make deploying Rails and Sinatra based applications easier.
 
-## Installation
+## Gemfile
 
-Add this line to your application's Gemfile:
-
-    gem 'capistrano-cookbook', require: false, group: :development
-
-And then execute:
-
-    $ bundle
-
-Or install it yourself as:
-
-    $ gem install capistrano-cookbook
+    gem "capistrano"
+    gem "capistrano-cookbook", github: "deanperry/capistrano-cookbook", require: false
+    gem "capistrano-rbenv", require: false
+    gem "capistrano-bundler", require: false
+    gem "capistrano-rails", require: false
 
 ## Usage
 
