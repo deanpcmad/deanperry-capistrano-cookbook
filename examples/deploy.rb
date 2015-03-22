@@ -5,17 +5,11 @@ set :deploy_user, "deploy"
 set :scm, :git
 set :repo_url, ""
 
-# setup rbenv.
-set :rbenv_type, :system
-set :rbenv_ruby, "2.2.0"
-set :rbenv_prefix, "RBENV_ROOT=#{fetch(:rbenv_path)} RBENV_VERSION=#{fetch(:rbenv_ruby)} #{fetch(:rbenv_path)}/bin/rbenv exec"
-set :rbenv_map_bins, %w{rake gem bundle ruby rails}
-
 # how many old releases do we want to keep
 set :keep_releases, 5
 
 # files we want symlinking to specific entries in shared.
-set :linked_files, %w{config/database.yml}
+set :linked_files, %w{config/database.yml config/secrets.yml}
 
 # dirs we want symlinking to shared
 set :linked_dirs, %w{log tmp/pids tmp/cache tmp/sockets}

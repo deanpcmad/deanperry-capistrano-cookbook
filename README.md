@@ -6,7 +6,6 @@ A collection of Capistrano 3 Compatible tasks to make deploying Rails and Sinatr
 
     gem "capistrano"
     gem "capistrano-cookbook", github: "deanperry/capistrano-cookbook", require: false
-    gem "capistrano-rbenv", require: false
     gem "capistrano-bundler", require: false
     gem "capistrano-rails", require: false
 
@@ -25,7 +24,6 @@ Otherwise you can include tasks individually:
 ```ruby
 require 'capistrano/cookbook/check_revision'
 require 'capistrano/cookbook/compile_assets_locally'
-require 'capistrano/cookbook/create_database'
 require 'capistrano/cookbook/logs'
 require 'capistrano/cookbook/rails'
 require 'capistrano/cookbook/monit'
@@ -64,23 +62,6 @@ Add the following to `deploy.rb`
 ``` ruby
  after 'deploy:symlink:shared', 'deploy:compile_assets_locally'
  ```
-
-#### Create Database
-
-Currently only works with Postgresql on configurations where your web server and db server are the same machine, e.g. single box deployments. This task will:
-
-* Check to see if a remote `database.yml` exists in `APP_PATH/shared/config`, if not attempt to copy one from `APP_PATH/shared/config`
-* If a new `database.yml` is created, it will include a username and database name based on the application name and a random password
-* Download the remote `database.yml`
-* Create the Postgres user specified in `database.yml` if it doesn't already exist
-* Create the Database specified in `database.yml` if it doesn't already exist
-* Grant the user all permissions on that database
-
-Run using:
-
-``` bash
-cap STAGE database:create
-```
 
 #### Logs
 
@@ -240,11 +221,3 @@ set(
   )
 )
 ```
-
-## Contributing
-
-1. Fork it ( http://github.com/talkingquickly/capistrano-cookbook/fork )
-2. Create your feature branch (`git checkout -b my-new-feature`)
-3. Commit your changes (`git commit -am 'Add some feature'`)
-4. Push to the branch (`git push origin my-new-feature`)
-5. Create new Pull Request
