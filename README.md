@@ -4,10 +4,7 @@ A collection of Capistrano 3 Compatible tasks to make deploying Rails and Sinatr
 
 ## Gemfile
 
-    gem "capistrano"
-    gem "capistrano-cookbook", github: "deanperry/capistrano-cookbook", require: false
-    gem "capistrano-bundler", require: false
-    gem "capistrano-rails", require: false
+    gem "deanperry-capistrano-cookbook", require: false
 
 ## Usage
 
