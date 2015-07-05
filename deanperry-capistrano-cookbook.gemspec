@@ -4,12 +4,12 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'capistrano/cookbook/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "capistrano-cookbook"
+  spec.name          = "deanperry-capistrano-cookbook"
   spec.version       = Capistrano::Cookbook::VERSION
-  spec.authors       = ["Ben Dixon"]
-  spec.email         = ["ben@talkingquickly.co.uk"]
+  spec.authors       = ["Dean Perry"]
+  spec.email         = ["dean@deanperry.net"]
   spec.summary       = %q{Selection of Capistrano 3 tasks to reduce boilerplate required when deploying Rails and Sinatra applications}
-  spec.homepage      = "https://github.com/TalkingQuickly/capistrano-cookbook"
+  spec.homepage      = "https://github.com/deanperry/deanperry-capistrano-cookbook"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files -z`.split("\x0")
