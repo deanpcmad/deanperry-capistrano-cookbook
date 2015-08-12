@@ -18,6 +18,9 @@ set :linked_dirs, %w{log tmp/pids tmp/cache tmp/sockets}
 # continue, see lib/capistrano/tasks/run_tests.cap
 set :tests, []
 
+# Set number of cores bundler can use
+set :bundle_jobs, 4
+
 # this:
 # http://www.capistranorb.com/documentation/getting-started/flow/
 # is worth reading for a quick overview of what tasks are called
