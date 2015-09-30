@@ -23,7 +23,6 @@ require 'capistrano/cookbook/check_revision'
 require 'capistrano/cookbook/compile_assets_locally'
 require 'capistrano/cookbook/logs'
 require 'capistrano/cookbook/rails'
-require 'capistrano/cookbook/monit'
 require 'capistrano/cookbook/nginx'
 require 'capistrano/cookbook/restart'
 require 'capistrano/cookbook/run_tests'
@@ -75,21 +74,6 @@ To tail the log file `APP_PATH/shared/log/unicorn.log`
 ``` bash
 cap production 'logs:tail[unicorn]'
 ```
-
-#### Monit
-
-Provides convenience tasks for restarting the Monit service.
-
-Available actions are `start`, `stop` and `restart`.
-
-Usage:
-
-```bash
-cap STAGE monit:start
-cap STAGE monit:stop
-cap STAGE monit:restart
-```
-
 #### Nginx
 
 Provides convenience tasks for interacting with Nginx using its `init.d` script as well as an additional task to remove the `default` virtualhost from `/etc/nginx/sites-enabled`
@@ -161,7 +145,6 @@ This task will also automatically invoke the following tasks:
 
 * `nginx:remove_default_vhost`
 * `nginx:reload`
-* `monit:restart`
 
 To ensure configuration file changes are picked up correctly.
 
@@ -176,7 +159,6 @@ set(
   nginx.conf
   database.example.yml
   log_rotation
-  monit
   unicorn.rb
   unicorn_init.sh
 ))
@@ -199,10 +181,6 @@ set(
     {
       source: "log_rotation",
      link: "/etc/logrotate.d/{{full_app_name}}"
-    },
-    {
-      source: "monit",
-      link: "/etc/monit/conf.d/{{full_app_name}}.conf"
     }
   ]
 )
