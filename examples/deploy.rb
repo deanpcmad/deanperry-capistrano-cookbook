@@ -26,24 +26,10 @@ set :bundle_jobs, 4
 # is worth reading for a quick overview of what tasks are called
 # and when for `cap stage deploy`
 
-namespace :deploy do
+namespace :deploy do  
   # make sure we're deploying what we think we're deploying
   before :deploy, "deploy:check_revision"
 
   # only allow a deploy with passing tests to be deployed
   # before :deploy, "deploy:run_tests"
-
-  after :finishing, 'deploy:cleanup'
-
-  # remove the default nginx configuration as it will tend
-  # to conflict with our configs.
-  before 'deploy:setup_config', 'nginx:remove_default_vhost'
-
-  # reload nginx to it will pick up any modified vhosts from
-  # setup_config
-  after 'deploy:setup_config', 'nginx:reload'
-
-  # As of Capistrano 3.1, the `deploy:restart` task is not called
-  # automatically.
-  after 'deploy:publishing', 'deploy:restart'
 end

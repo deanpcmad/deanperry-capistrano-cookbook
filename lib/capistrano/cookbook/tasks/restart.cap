@@ -1,13 +1,12 @@
 namespace :deploy do
-  desc 'Commands for unicorn application'
-  %w(start stop force-stop restart upgrade reopen-logs).each do |command|
-    task command.to_sym do
-      on roles(:app), in: :sequence, wait: 5 do
-        sudo "/etc/init.d/unicorn_#{fetch(:full_app_name)} #{command}"
-      end
+  desc "Restarts the Passenger application"
+  task :restart do
+    on roles(:app), in: :sequence, wait: 5 do
+      execute :touch, release_path.join('tmp/restart.txt')
     end
   end
 end
 
 # Automatically restart after a deploy
-after 'deploy', 'deploy:restart'
+after 'deploy:publishing', 'deploy:restart'
+after 'deploy:finishing', 'deploy:cleanup'

@@ -11,15 +11,12 @@ set :server_name, "site.com www.site.com"
 # at filepaths
 set :full_app_name, "#{fetch(:application)}_#{fetch(:stage)}"
 
-server "", user: "deploy", roles: %w{web app db}, primary: true
+server "", port: 22, user: "deploy", roles: %w{web app db}, primary: true
 
-set :deploy_to, "/home/#{fetch(:deploy_user)}/apps/#{fetch(:full_app_name)}"
+set :deploy_to, "/opt/apps/#{fetch(:full_app_name)}"
 
 # dont try and infer something as important as environment from stage name.
 set :rails_env, :production
-
-# number of unicorn workers
-set :unicorn_worker_count, 1
 
 # whether we're using ssl or not, used for building nginx config file
 set :enable_ssl, true

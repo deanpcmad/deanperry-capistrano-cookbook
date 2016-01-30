@@ -21,6 +21,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency "capistrano-bundler"
   spec.add_dependency "capistrano-rails"
   spec.add_dependency "sshkit-sudo"
+  spec.add_dependency "airbrussh"
 
   spec.add_development_dependency "bundler", "~> 1.5"
   spec.add_development_dependency "rake"

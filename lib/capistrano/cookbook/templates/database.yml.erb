@@ -4,6 +4,6 @@
   reconnect: false
   database: <%= "#{fetch(:application)}_#{fetch(:rails_env)}" %>
   pool: 5
-  username: <%= "#{fetch(:application)}_#{fetch(:rails_env)}" %>
+  username: <%= fetch(:application) %>
   password: <%= SecureRandom.hex(12) %>
   host: localhost

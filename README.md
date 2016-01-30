@@ -13,20 +13,20 @@ A collection of Capistrano 3 Compatible tasks to make deploying Rails and Sinatr
 To include all tasks from the gem, add the following to your `Capfile`:
 
 ```ruby
-require 'capistrano/cookbook'
+require "capistrano/cookbook"
 ```
 
 Otherwise you can include tasks individually:
 
 ```ruby
-require 'capistrano/cookbook/check_revision'
-require 'capistrano/cookbook/compile_assets_locally'
-require 'capistrano/cookbook/logs'
-require 'capistrano/cookbook/rails'
-require 'capistrano/cookbook/nginx'
-require 'capistrano/cookbook/restart'
-require 'capistrano/cookbook/run_tests'
-require 'capistrano/cookbook/setup_config'
+require "capistrano/cookbook/check_revision"
+require "capistrano/cookbook/compile_assets_locally"
+require "capistrano/cookbook/logs"
+require "capistrano/cookbook/rails"
+require "capistrano/cookbook/nginx"
+require "capistrano/cookbook/restart"
+require "capistrano/cookbook/run_tests"
+require "capistrano/cookbook/setup_config"
 ```
 
 ### The Tasks
@@ -56,8 +56,8 @@ Compiles local assets and then rsyncs them to the production server. Avoids the 
 Add the following to `deploy.rb`
 
 ``` ruby
- after 'deploy:symlink:shared', 'deploy:compile_assets_locally'
- ```
+after 'deploy:symlink:shared', 'deploy:compile_assets_locally'
+```
 
 #### Logs
 
@@ -78,7 +78,7 @@ cap production 'logs:tail[unicorn]'
 
 Provides convenience tasks for interacting with Nginx using its `init.d` script as well as an additional task to remove the `default` virtualhost from `/etc/nginx/sites-enabled`
 
-Available actions are `start`, `stop`, `restart`, `reload`, `remove_default_vhost`.
+Available actions are `start`, `stop`, `restart`, `reload`.
 
 `reload` will reload the nginx virtualhosts without restarting the server.
 
@@ -88,7 +88,6 @@ Usage:
 cap STAGE nginx:start
 cap STAGE nginx:stop
 cap STAGE nginx:restart
-cap STAGE nginx:remove_default_vhost
 ```
 
 #### Restart
@@ -143,7 +142,6 @@ Finally any config files included in `executable_config_files` will be marked as
 
 This task will also automatically invoke the following tasks:
 
-* `nginx:remove_default_vhost`
 * `nginx:reload`
 
 To ensure configuration file changes are picked up correctly.
@@ -158,9 +156,6 @@ set(
   %w(
   nginx.conf
   database.example.yml
-  log_rotation
-  unicorn.rb
-  unicorn_init.sh
 ))
 ```
 
@@ -173,14 +168,6 @@ set(
     {
       source: "nginx.conf",
       link: "/etc/nginx/sites-enabled/{{full_app_name}}"
-    },
-    {
-      source: "unicorn_init.sh",
-      link: "/etc/init.d/unicorn_{{full_app_name}}"
-    },
-    {
-      source: "log_rotation",
-     link: "/etc/logrotate.d/{{full_app_name}}"
     }
   ]
 )
@@ -192,7 +179,7 @@ Executable Config Files:
 set(
   :executable_config_files,
   w(
-    unicorn_init.sh
+    something.sh
   )
 )
 ```

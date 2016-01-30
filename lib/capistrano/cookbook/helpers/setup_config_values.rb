@@ -20,31 +20,18 @@ module Capistrano
           {
             source: "nginx.conf",
             link: "/etc/nginx/sites-enabled/#{fetch(:full_app_name)}"
-          },
-          {
-            source: "unicorn_init.sh",
-            link: "/etc/init.d/unicorn_#{fetch(:full_app_name)}"
-          },
-          {
-            source: "log_rotation",
-           link: "/etc/logrotate.d/#{fetch(:full_app_name)}"
           }
         ]
       end
 
       def executable_config_files_defaults
-        %w(
-          unicorn_init.sh
-        )
+        []
       end
 
       def config_files_defaults
         %w(
           nginx.conf
           database.yml
-          log_rotation
-          unicorn.rb
-          unicorn_init.sh
           secrets.yml
         )
       end
